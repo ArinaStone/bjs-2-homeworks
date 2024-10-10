@@ -1,9 +1,10 @@
+// Создание базового класса
 class PrintEditionItem {
     constructor(name, releaseDate, pagesCount) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.pagesCount = pagesCount;
-        this._state = 100; // начальное состояние по умолчанию
+        this._state = 100;
         this.type = null;
     }
 
@@ -28,6 +29,7 @@ class PrintEditionItem {
     }
 }
 
+// Создание класса "Журнал"
 class Magazine extends PrintEditionItem {
     constructor(name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
@@ -35,6 +37,7 @@ class Magazine extends PrintEditionItem {
     }
 }
 
+// Создание класса "Книга"
 class Book extends PrintEditionItem {
     constructor(author, name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
@@ -43,6 +46,7 @@ class Book extends PrintEditionItem {
     }
 }
 
+// Создание классов жанров книги
 class NovelBook extends Book {
     constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
@@ -64,6 +68,7 @@ class DetectiveBook extends Book {
     }
 }
 
+// Создание библиотеки
 class Library {
     constructor(name) {
         this.name = name;
@@ -89,12 +94,14 @@ class Library {
     }
 }
 
-// Пример использования классов
+// Тестирование корректности работы классов и методов
+
+// Пример библиотеки
 const library = new Library('City Library');
 
-// Создание книг и журналов
+// Создание нескольких печатных изданий разных типов
 const book1 = new PrintEditionItem('War and Peace', '1869', 1225);
-const book2 = new PrintEditionItem('1984', '1949', 328);
+const book2 = new PrintEditionItem('1984', '1919', 328);
 const magazine1 = new PrintEditionItem('Tech Today', '2023', 50);
 
 // Добавление книг в библиотеку
@@ -102,8 +109,8 @@ library.addBook(book1);
 library.addBook(book2);
 library.addBook(magazine1);
 
-// Поиск книги, изданной в 1949 году
-const foundBook = library.findBookBy('releaseDate', '1949');
+// Поиск книги, изданной в 1919 году
+const foundBook = library.findBookBy('releaseDate', '1919');
 console.log(foundBook ? foundBook.name : 'Книга не найдена');
 
 // Выдача книги
@@ -111,7 +118,7 @@ const borrowedBook = library.giveBookByName('1984');
 console.log(borrowedBook ? `Выдана книга: ${borrowedBook.name}` : 'Книга не найдена');
 
 // Повреждение выданной книги
-borrowedBook.state = 20; // Уменьшаем состояние
+borrowedBook.state = 20;
 
 // Восстановление книги
 borrowedBook.fix();
